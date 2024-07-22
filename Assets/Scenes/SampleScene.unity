@@ -6500,10 +6500,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 921425181}
     m_Modifications:
-    - target: {fileID: 601325012246647995, guid: 948ae1bb86ba5a74ca462a52b5372894, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4782593207814365496, guid: 948ae1bb86ba5a74ca462a52b5372894, type: 3}
       propertyPath: m_Name
       value: Tree1
@@ -6604,10 +6600,6 @@ PrefabInstance:
     - target: {fileID: 7024155960734327123, guid: cce8f5d7e4ab0694abb8b541a6b26b9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8707463320844182047, guid: cce8f5d7e4ab0694abb8b541a6b26b9a, type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10021,6 +10013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1471900108}
+  _inputReader: {fileID: 1471900109}
   _player: {fileID: 1471900111}
 --- !u!1 &1549219651
 GameObject:
