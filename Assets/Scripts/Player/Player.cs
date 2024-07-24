@@ -1,13 +1,11 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
-    [SerializeField] private Mover _mover;
+    [SerializeField] private PlayerMover _mover;
     [SerializeField] private GroundDetector _groundDetector;
-
-    public UnityAction Jumped;
+    [SerializeField] private PlayerAnimator _playerAnimator;
 
     private void FixedUpdate()
     {
@@ -17,7 +15,7 @@ public class Player : MonoBehaviour
         if (_inputReader.GetIsJump() && _groundDetector.IsGround)
         {
             _mover.Jump();
-            Jumped?.Invoke();
+            _playerAnimator.PlayJumpAnimation();
         }
     }
 }

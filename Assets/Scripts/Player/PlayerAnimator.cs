@@ -5,17 +5,6 @@ public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private InputReader _inputReader;
-    [SerializeField] private Player _player;
-
-    private void OnEnable()
-    {
-        _player.Jumped += PlayJumpAnimation;
-    }
-
-    private void OnDisable()
-    {
-        _player.Jumped -= PlayJumpAnimation;
-    }
 
     private void Update()
     {
@@ -27,7 +16,7 @@ public class PlayerAnimator : MonoBehaviour
         _animator.SetFloat(AnimatorConstants.Speed, Math.Abs(_inputReader.Direction));
     }
 
-    private void PlayJumpAnimation()
+    public void PlayJumpAnimation()
     {
         _animator.SetTrigger(AnimatorConstants.Jump);
     }

@@ -4,20 +4,15 @@ public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] _points;
     [SerializeField] private Coin _prefab;
+    [SerializeField] private PlayerCollisionDetector _playerCollisionDetector;
 
-    private Coin _coin;
-
-    private void Awake()
+    private void Start()
     {
         SpawnCoin();
     }
 
-    private void SpawnCoin()
+    public void SpawnCoin()
     {
-        if (_coin != null)
-            _coin.Collected -= SpawnCoin;
-
-        _coin = Instantiate(_prefab, _points[Random.Range(0, _points.Length)]);
-        _coin.Collected += SpawnCoin;
+        Instantiate(_prefab, _points[Random.Range(0, _points.Length)]);
     }
 }

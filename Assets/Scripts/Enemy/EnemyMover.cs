@@ -1,29 +1,26 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private Transform[] _points;
 
     private int _currentPoint = 0;
 
-    private void Update()
+    public float DirectionX {  get; private set; }
+
+    public void Move()
     {
         Vector3 newPosition = Vector3.MoveTowards(transform.position, _points[_currentPoint].position, _speed * Time.deltaTime);
-        
-        if(newPosition.x > transform.position.x) 
-            transform.localScale = new Vector3(1, 1, 1);
-        else
-            transform.localScale = new Vector3(-1, 1, 1);
 
+        DirectionX = newPosition.x - transform.position.x;
         transform.position = newPosition;
 
         if (transform.position == _points[_currentPoint].position)
-            NextPoint();
-
+            GetNextPoint();
     }
 
-    private void NextPoint()
+    private void GetNextPoint()
     {
         _currentPoint = ++_currentPoint % _points.Length;
     }
