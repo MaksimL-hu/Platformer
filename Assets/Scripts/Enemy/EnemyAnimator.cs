@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private EnemyMover _mover;
+
     private void Update()
     {
         if (_mover.DirectionX > 0)
