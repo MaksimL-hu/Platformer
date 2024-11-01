@@ -1295,7 +1295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921425180}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10218,12 +10218,13 @@ MonoBehaviour:
   _health: 100
   _damage: 5
   _reloadAttack: 3
+  _lastTimeAttack: 0
   _attackZone: {fileID: 434443541}
   _inputReader: {fileID: 1471900109}
   _mover: {fileID: 1471900114}
-  _groundDetector: {fileID: 481698581}
   _playerAnimator: {fileID: 1471900112}
-  _lastTimeAttack: 0
+  _groundDetector: {fileID: 481698581}
+  _CollisionDetector: {fileID: 1030631844}
 --- !u!114 &1471900112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11313,8 +11314,8 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 713688735}
   - {fileID: 1549219652}
-  - {fileID: 921425181}
   - {fileID: 1471900104}
+  - {fileID: 921425181}
   - {fileID: 8859983874195098238}
   - {fileID: 2023301761}
   - {fileID: 58965714}
