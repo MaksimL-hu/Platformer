@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+    [SerializeField] private GameObject _sprite;
     [SerializeField] private Animator _animator;
     [SerializeField] private InputReader _inputReader;
 
     private void Update()
     {
         if(_inputReader.Direction > 0)
-            transform.localScale = new Vector3(Math.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            _sprite.transform.localScale = new Vector3(Math.Abs(_sprite.transform.localScale.x), _sprite.transform.localScale.y, _sprite.transform.localScale.z);
         else if(_inputReader.Direction < 0 && transform.localScale.x > 0)
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            _sprite.transform.localScale = new Vector3(-_sprite.transform.localScale.x, _sprite.transform.localScale.y, _sprite.transform.localScale.z);
 
         _animator.SetFloat(AnimatorConstants.Speed, Math.Abs(_inputReader.Direction));
     }

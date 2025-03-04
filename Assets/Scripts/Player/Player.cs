@@ -1,29 +1,28 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _health;
-    [SerializeField] private int _damage;
-
+    [SerializeField] private float _damage;
     [SerializeField] private float _reloadAttack;
-    [SerializeField] private float _lastTimeAttack;
 
+    [SerializeField] private Health _health;
     [SerializeField] private AttackZone _attackZone;
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private PlayerMover _mover;
     [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private GroundDetector _groundDetector;
-    [SerializeField] private PlayerCollisionDetector _CollisionDetector;
+    [SerializeField] private PlayerCollisionDetector _collisionDetector;
+
+    private float _lastTimeAttack;
 
     private void OnEnable()
     {
-        _CollisionDetector.MedKitCollected += Heal;
+        _collisionDetector.MedKitCollected += Heal;
     }
 
     private void OnDisable()
     {
-        _CollisionDetector.MedKitCollected -= Heal;
+        _collisionDetector.MedKitCollected -= Heal;
     }
 
     private void FixedUpdate()
@@ -56,13 +55,13 @@ public class Player : MonoBehaviour
         enemy.TakeDamage(_damage);
     }
 
-    private void Heal(int health)
+    private void Heal(float health)
     {
-        _health += health;
+        _health.Heal(health);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        _health -= damage;
+        _health.TakeDamage(damage);
     }
 }

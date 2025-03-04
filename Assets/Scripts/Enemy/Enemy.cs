@@ -2,26 +2,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int _health;
-    [SerializeField] private int _damage;
+    [SerializeField] private float _damage;
     [SerializeField] private float _reloadAttack;
-    [SerializeField] private EnemyMover _mover;
-    [SerializeField] private Player _target;
     [SerializeField] private float _detectionDistance;
     [SerializeField] private float _attackDistance;
+
+    [SerializeField] private Health _health;
+    [SerializeField] private Player _target;
+    [SerializeField] private EnemyMover _mover;
     [SerializeField] private GroundDetector _wallDetector;
     [SerializeField] private GroundDetector _groundDetector;
 
     private float _lastTimeAttack;
 
-    private void Update()
+    private void FixedUpdate()
     {
         _lastTimeAttack += Time.deltaTime;
 
-        if (_wallDetector.IsGround)
+        if (_wallDetector.IsGround && _groundDetector.IsGround)
         {
-            if (_groundDetector.IsGround)
-                _mover.Jump();
+            _mover.Jump();
 
             return;
         }
@@ -42,11 +42,11 @@ public class Enemy : MonoBehaviour
         _mover.MoveToPoint();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        _health -= damage;
+        _health.TakeDamage(damage);
 
-        if (_health <= 0)
+        if (_health.CurrentHealth <= 0)
             Destroy(gameObject);
     }
 

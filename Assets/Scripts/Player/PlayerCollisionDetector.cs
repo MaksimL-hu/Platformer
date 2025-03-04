@@ -6,7 +6,8 @@ public class PlayerCollisionDetector : MonoBehaviour
     [SerializeField] private CoinSpawner _coinSpawner;
     [SerializeField] private Player _player;
 
-    public event Action<int> MedKitCollected;
+    public event Action<float> MedKitCollected;
+    public event Action CoinCollected;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,6 +16,7 @@ public class PlayerCollisionDetector : MonoBehaviour
             if(item is Coin)
             {
                 item.Collect();
+                CoinCollected?.Invoke();
                 _coinSpawner.SpawnCoin();
             }
             else if(item is MedKit medKit)
