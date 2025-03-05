@@ -4,7 +4,6 @@ public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] _points;
     [SerializeField] private Coin _prefab;
-    [SerializeField] private PlayerCollisionDetector _playerCollisionDetector;
 
     private int _previousPoint;
 
@@ -15,10 +14,10 @@ public class CoinSpawner : MonoBehaviour
 
     public void SpawnCoin()
     {
-        Instantiate(_prefab, _points[GetRandomPoint()]);
+        Instantiate(_prefab, _points[GetNextRandomPoint()]);
     }
 
-    private int GetRandomPoint()
+    private int GetNextRandomPoint()
     {
         int point = Random.Range(0, _points.Length);
 

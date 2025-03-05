@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -12,6 +13,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyMover _mover;
     [SerializeField] private GroundDetector _wallDetector;
     [SerializeField] private GroundDetector _groundDetector;
+
+    public event Action DamageTaken;
+
+    public float CurrentHealth => _health.CurrentHealth;
 
     private float _lastTimeAttack;
 
@@ -46,8 +51,7 @@ public class Enemy : MonoBehaviour
     {
         _health.TakeDamage(damage);
 
-        if (_health.CurrentHealth <= 0)
-            Destroy(gameObject);
+        DamageTaken?.Invoke();
     }
 
     private void Attack()

@@ -167,7 +167,6 @@ MonoBehaviour:
   - {fileID: 675495219}
   - {fileID: 1661244344}
   _prefab: {fileID: 6253723160163666291, guid: 13f685ffb5f981044b7605b8b95fc2b3, type: 3}
-  _playerCollisionDetector: {fileID: 0}
 --- !u!4 &58965714
 Transform:
   m_ObjectHideFlags: 0
