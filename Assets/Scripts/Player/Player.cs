@@ -5,6 +5,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private float _reloadAttack;
 
+    [SerializeField] private VampirismAbility _vampirism;
+
     [SerializeField] private Health _health;
     [SerializeField] private AttackZone _attackZone;
     [SerializeField] private InputReader _inputReader;
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerCollisionDetector _collisionDetector;
 
     private float _lastTimeAttack;
+    private float _lastTimeVampirism;
 
     private void OnEnable()
     {
@@ -40,13 +43,19 @@ public class Player : MonoBehaviour
     private void Update()
     {
         _lastTimeAttack += Time.deltaTime;
+        _lastTimeVampirism += Time.deltaTime;
 
         if (_inputReader.GetIsAttack() && _lastTimeAttack >= _reloadAttack)
         {
             _lastTimeAttack = 0;
 
-            if(_attackZone.Enemy != null)
-                Attack(_attackZone.Enemy);
+            if(_attackZone.GetNearestEnemy() != null)
+                Attack(_attackZone.GetNearestEnemy());
+        }
+
+        if(_inputReader.GetIsVampirism())
+        {
+            _vampirism.Vampirism();
         }
     }
 
@@ -55,7 +64,7 @@ public class Player : MonoBehaviour
         enemy.TakeDamage(_damage);
     }
 
-    private void Heal(float health)
+    public void Heal(float health)
     {
         _health.Heal(health);
     }
